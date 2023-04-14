@@ -31,8 +31,9 @@ func (s *ListService) GetLists() ([]*appModel.List, error) {
 	appLists := make([]*appModel.List, 0, len(lists))
 	for _, list := range lists {
 		appList := &appModel.List{
-			ID:   list.ID,
-			Name: list.Name,
+			ID:     list.ID,
+			Name:   list.Name,
+			UserId: list.UserId,
 		}
 		appLists = append(appLists, appList)
 	}
@@ -42,7 +43,8 @@ func (s *ListService) GetLists() ([]*appModel.List, error) {
 
 func (s *ListService) CreateList(newList *appModel.NewList) (*appModel.List, error) {
 	list := &models.List{
-		Name: newList.Name,
+		Name:   newList.Name,
+		UserId: newList.UserId,
 	}
 
 	list, err := s.listUseCases.AddList(list)
@@ -50,8 +52,9 @@ func (s *ListService) CreateList(newList *appModel.NewList) (*appModel.List, err
 		return nil, fmt.Errorf("failed to create list: %w", err)
 	}
 	appList := &appModel.List{
-		ID:   list.ID,
-		Name: list.Name,
+		ID:     list.ID,
+		Name:   list.Name,
+		UserId: list.UserId,
 	}
 	return appList, nil
 }
@@ -67,8 +70,9 @@ func (s *ListService) GetListByID(id string) (*appModel.List, error) {
 	}
 
 	appList := &appModel.List{
-		ID:   list.ID,
-		Name: list.Name,
+		ID:     list.ID,
+		Name:   list.Name,
+		UserId: list.UserId,
 	}
 
 	return appList, nil
@@ -84,8 +88,9 @@ func (s *ListService) UpdateList(id string, updatedList *appModel.NewList) (*app
 	}
 
 	appList := &appModel.List{
-		ID:   list.ID,
-		Name: list.Name,
+		ID:     list.ID,
+		Name:   list.Name,
+		UserId: list.UserId,
 	}
 
 	return appList, nil

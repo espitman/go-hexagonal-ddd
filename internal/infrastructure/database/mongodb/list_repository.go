@@ -33,8 +33,9 @@ func (r *listRepository) Create(list *models.List) (*models.List, error) {
 		return nil, err
 	}
 	return &models.List{
-		ID:   newList.InsertedID.(primitive.ObjectID).Hex(),
-		Name: list.Name,
+		ID:     newList.InsertedID.(primitive.ObjectID).Hex(),
+		Name:   list.Name,
+		UserId: list.UserId,
 	}, nil
 }
 

@@ -22,6 +22,8 @@ func (app *ListHandler) Create(c *gin.Context) {
 		return
 	}
 
+	list.UserId = c.GetInt64("userId")
+
 	createdList, err := app.service.CreateList(&list)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
