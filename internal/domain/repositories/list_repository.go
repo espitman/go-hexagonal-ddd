@@ -1,5 +1,7 @@
 package repositories
 
+// implemented by mongodb list_repository
+
 import "git.alibaba.ir/saeedheidari-go-prototypes/jbm-wishes/internal/domain/models"
 
 type ListRepository interface {
