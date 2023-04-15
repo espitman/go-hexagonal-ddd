@@ -15,7 +15,7 @@ func (router *Router) listRouter() {
 	listHandler := handlers.NewListHandler(*appListService)
 
 	listGroup := router.r.Group("/list")
-	listGroup.Use(middlewares.AuthMiddleware)
+	listGroup.Use(middlewares.Authorize)
 
 	listGroup.GET("", listHandler.GetAll)
 	listGroup.GET("/:id", listHandler.GetById)

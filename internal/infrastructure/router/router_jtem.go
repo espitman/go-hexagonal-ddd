@@ -19,7 +19,7 @@ func (router *Router) itemRouter() {
 	itemHandler := handlers.NewItemHandler(*appItemService)
 
 	itemGroup := router.r.Group("/item")
-	itemGroup.Use(middlewares.AuthMiddleware)
+	itemGroup.Use(middlewares.Authorize)
 
 	itemGroup.POST("", itemHandler.Create)
 	itemGroup.DELETE("/:id", itemHandler.Delete)

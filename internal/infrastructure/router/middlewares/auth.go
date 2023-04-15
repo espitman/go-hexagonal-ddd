@@ -7,7 +7,7 @@ import (
 	"strings"
 )
 
-func AuthMiddleware(c *gin.Context) {
+func Authorize(c *gin.Context) {
 	authHeader := c.Request.Header.Get("Authorization")
 	if authHeader == "" {
 		c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{"error": "Missing Authorization header"})
