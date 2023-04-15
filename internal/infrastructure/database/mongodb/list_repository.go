@@ -4,11 +4,11 @@ import (
 	"context"
 	"git.alibaba.ir/saeedheidari-go-prototypes/jbm-wishes/internal/domain/models"
 	"git.alibaba.ir/saeedheidari-go-prototypes/jbm-wishes/internal/domain/repositories"
-	"go.mongodb.org/mongo-driver/bson/primitive"
-
 	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
+	"time"
 )
 
 type listRepository struct {
@@ -28,14 +28,18 @@ func (r *listRepository) getCollection() *mongo.Collection {
 }
 
 func (r *listRepository) Create(list *models.List) (*models.List, error) {
+	list.CreatedAt = time.Now()
+	list.UpdatedAt = time.Now()
 	newList, err := r.getCollection().InsertOne(context.Background(), list)
 	if err != nil {
 		return nil, err
 	}
 	return &models.List{
-		ID:     newList.InsertedID.(primitive.ObjectID).Hex(),
-		Name:   list.Name,
-		UserId: list.UserId,
+		ID:        newList.InsertedID.(primitive.ObjectID).Hex(),
+		Name:      list.Name,
+		UserId:    list.UserId,
+		CreatedAt: list.CreatedAt,
+		UpdatedAt: list.UpdatedAt,
 	}, nil
 }
 

@@ -52,9 +52,11 @@ func (s *ListService) CreateList(newList *appModel.NewList) (*appModel.List, err
 		return nil, fmt.Errorf("failed to create list: %w", err)
 	}
 	appList := &appModel.List{
-		ID:     list.ID,
-		Name:   list.Name,
-		UserId: list.UserId,
+		ID:        list.ID,
+		Name:      list.Name,
+		UserId:    list.UserId,
+		CreatedAt: list.CreatedAt,
+		UpdatedAt: list.UpdatedAt,
 	}
 	return appList, nil
 }
