@@ -5,7 +5,7 @@ import (
 	appServices "git.alibaba.ir/saeedheidari-go-prototypes/jbm-wishes/internal/app/services"
 	"git.alibaba.ir/saeedheidari-go-prototypes/jbm-wishes/internal/domain/services"
 	"git.alibaba.ir/saeedheidari-go-prototypes/jbm-wishes/internal/infrastructure/database/mongodb"
-	"git.alibaba.ir/saeedheidari-go-prototypes/jbm-wishes/internal/pkg/middleware"
+	"git.alibaba.ir/saeedheidari-go-prototypes/jbm-wishes/internal/infrastructure/router/middlewares"
 )
 
 func (router *Router) itemRouter() {
@@ -19,7 +19,7 @@ func (router *Router) itemRouter() {
 	itemHandler := handlers.NewItemHandler(*appItemService)
 
 	itemGroup := router.r.Group("/item")
-	itemGroup.Use(middleware.AuthMiddleware)
+	itemGroup.Use(middlewares.AuthMiddleware)
 
 	itemGroup.POST("", itemHandler.Create)
 	itemGroup.DELETE("/:id", itemHandler.Delete)

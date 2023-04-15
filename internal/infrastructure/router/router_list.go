@@ -5,7 +5,7 @@ import (
 	appServices "git.alibaba.ir/saeedheidari-go-prototypes/jbm-wishes/internal/app/services"
 	"git.alibaba.ir/saeedheidari-go-prototypes/jbm-wishes/internal/domain/services"
 	"git.alibaba.ir/saeedheidari-go-prototypes/jbm-wishes/internal/infrastructure/database/mongodb"
-	"git.alibaba.ir/saeedheidari-go-prototypes/jbm-wishes/internal/pkg/middleware"
+	"git.alibaba.ir/saeedheidari-go-prototypes/jbm-wishes/internal/infrastructure/router/middlewares"
 )
 
 func (router *Router) listRouter() {
@@ -15,7 +15,7 @@ func (router *Router) listRouter() {
 	listHandler := handlers.NewListHandler(*appListService)
 
 	listGroup := router.r.Group("/list")
-	listGroup.Use(middleware.AuthMiddleware)
+	listGroup.Use(middlewares.AuthMiddleware)
 
 	listGroup.GET("", listHandler.GetAll)
 	listGroup.GET("/:id", listHandler.GetById)
