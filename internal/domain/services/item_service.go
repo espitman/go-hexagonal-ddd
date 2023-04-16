@@ -22,8 +22,8 @@ func (s *ItemService) AddItem(item *models.Item) (*models.Item, error) {
 	return s.itemRepository.Create(item)
 }
 
-func (s *ItemService) GetItemsByListID(listId string) (*models.Item, error) {
-	return s.itemRepository.GetByListID(listId)
+func (s *ItemService) GetItemsByListID(listId string) ([]*models.Item, error) {
+	return s.itemRepository.GetItemsByListID(listId)
 }
 
 func (s *ItemService) DeleteItem(id string) error {

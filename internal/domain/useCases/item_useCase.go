@@ -4,6 +4,6 @@ import "git.alibaba.ir/saeedheidari-go-prototypes/jbm-wishes/internal/domain/mod
 
 type ItemUseCase interface {
 	AddItem(item *models.Item) (*models.Item, error)
-	GetItemsByListID(listId string) (*models.Item, error)
+	GetItemsByListID(listId string) ([]*models.Item, error)
 	DeleteItem(id string) error
 }

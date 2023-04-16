@@ -41,10 +41,10 @@ func (s *ListService) GetLists() ([]*appModel.List, error) {
 	return appLists, nil
 }
 
-func (s *ListService) CreateList(newList *appModel.NewList) (*appModel.List, error) {
+func (s *ListService) CreateList(newList *appModel.NewList, userId int64) (*appModel.List, error) {
 	list := &models.List{
 		Name:   newList.Name,
-		UserId: newList.UserId,
+		UserId: userId,
 	}
 
 	list, err := s.listUseCases.AddList(list)

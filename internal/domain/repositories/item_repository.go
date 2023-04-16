@@ -9,7 +9,7 @@ import (
 
 type ItemRepository interface {
 	Create(item *models.Item) (*models.Item, error)
-	GetByListID(id string) (*models.Item, error)
+	GetItemsByListID(id string) ([]*models.Item, error)
 	Delete(id string) error
 	IsMemberOfTheList(itemCode int64, listId primitive.ObjectID) bool
 }

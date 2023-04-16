@@ -40,28 +40,10 @@ func (s *ItemService) CreateItem(newItem *appModel.NewItem) (*appModel.Item, err
 	}
 	appItem := &appModel.Item{
 		ID:        item.ID,
-		ListId:    newItem.ListId,
+		ListId:    item.ListId,
 		ItemCode:  newItem.ItemCode,
 		CreatedAt: item.CreatedAt,
 	}
-	return appItem, nil
-}
-
-func (s *ItemService) GetItemsByListID(listId string) (*appModel.Item, error) {
-	item, err := s.itemUseCases.GetItemsByListID(listId)
-	if err != nil {
-		return nil, fmt.Errorf("failed to get item by ID %s: %w", listId, err)
-	}
-
-	if item == nil {
-		return nil, nil
-	}
-
-	appItem := &appModel.Item{
-		ID:     item.ID,
-		ListId: listId,
-	}
-
 	return appItem, nil
 }
 

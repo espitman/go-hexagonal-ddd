@@ -9,6 +9,7 @@ import (
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
+	"go.mongodb.org/mongo-driver/mongo/options"
 	"time"
 )
 
@@ -42,14 +43,27 @@ func (r *itemRepository) Create(item *models.Item) (*models.Item, error) {
 	}, nil
 }
 
-func (r *itemRepository) GetByListID(id string) (*models.Item, error) {
-	var item models.Item
+func (r *itemRepository) GetItemsByListID(id string) ([]*models.Item, error) {
 	docID, _ := primitive.ObjectIDFromHex(id)
-	err := r.getCollection().FindOne(context.Background(), bson.M{"_id": docID}).Decode(&item)
+	opts := options.Find()
+	cursor, err := r.getCollection().Find(context.Background(), bson.M{"_id": docID}, opts)
 	if err != nil {
 		return nil, err
 	}
-	return &item, nil
+	defer cursor.Close(context.Background())
+
+	var items []*models.Item
+	for cursor.Next(context.Background()) {
+		var item models.Item
+		if err := cursor.Decode(&item); err != nil {
+			return nil, err
+		}
+		items = append(items, &item)
+	}
+	if err := cursor.Err(); err != nil {
+		return nil, err
+	}
+	return items, nil
 }
 
 func (r *itemRepository) Delete(id string) error {

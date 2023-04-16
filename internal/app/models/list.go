@@ -3,8 +3,7 @@ package appModel
 import "time"
 
 type NewList struct {
-	Name   string `json:"name" bson:"name"`
-	UserId int64  `json:"userId" bson:"userId"`
+	Name string `json:"name" bson:"name"`
 }
 
 type List struct {
