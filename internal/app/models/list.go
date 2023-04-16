@@ -11,5 +11,9 @@ type List struct {
 	Name      string    `json:"name" bson:"name,omitempty"`
 	UserId    int64     `json:"userId" bson:"userId"`
 	CreatedAt time.Time `json:"created_at" bson:"created_at,omitempty"`
-	UpdatedAt time.Time `json:"updated_at" bson:"updated_at,omitempty"`
+}
+
+type ListWithItems struct {
+	List
+	Items []Item
 }

@@ -239,7 +239,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/appModel.List"
+                            "$ref": "#/definitions/appModel.ListWithItems"
                         }
                     },
                     "401": {
@@ -397,7 +397,27 @@ const docTemplate = `{
                 "name": {
                     "type": "string"
                 },
-                "updated_at": {
+                "userId": {
+                    "type": "integer"
+                }
+            }
+        },
+        "appModel.ListWithItems": {
+            "type": "object",
+            "properties": {
+                "created_at": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "items": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/appModel.Item"
+                    }
+                },
+                "name": {
                     "type": "string"
                 },
                 "userId": {
