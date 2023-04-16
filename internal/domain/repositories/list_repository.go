@@ -11,4 +11,5 @@ type ListRepository interface {
 	Update(id string, list *models.List) (*models.List, error)
 	Delete(id string) error
 	GetAll() ([]*models.List, error)
+	GetAllByUserId(userId int64) ([]*models.List, error)
 }

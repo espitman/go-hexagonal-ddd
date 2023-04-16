@@ -18,8 +18,8 @@ func NewListService(listUseCases useCases.ListUseCase) *ListService {
 	}
 }
 
-func (s *ListService) GetLists() ([]*appModel.List, error) {
-	lists, err := s.listUseCases.ListLists()
+func (s *ListService) GetLists(userId int64) ([]*appModel.List, error) {
+	lists, err := s.listUseCases.ListLists(userId)
 	if err != nil {
 		return nil, fmt.Errorf("failed to get lists: %w", err)
 	}

@@ -75,7 +75,8 @@ func (app *ListHandler) GetById(c *gin.Context) {
 // @Failure 500 {object} commonModels.ErrorResponse
 // @Router /list [get]
 func (app *ListHandler) GetAll(c *gin.Context) {
-	lists, err := app.service.GetLists()
+	userId := c.GetInt64("userId")
+	lists, err := app.service.GetLists(userId)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
