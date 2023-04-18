@@ -1,4 +1,4 @@
-package mongodb
+package repository
 
 // implement list domain repository
 
