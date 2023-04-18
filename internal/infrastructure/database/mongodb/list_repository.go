@@ -104,3 +104,25 @@ func (r *listRepository) GetAll() ([]*models.List, error) {
 	}
 	return lists, nil
 }
+
+func (r *listRepository) GetAllByUserId(userId int64) ([]*models.List, error) {
+	opts := options.Find()
+	cursor, err := r.getCollection().Find(context.Background(), bson.M{"userId": userId}, opts)
+	if err != nil {
+		return nil, err
+	}
+	defer cursor.Close(context.Background())
+
+	var lists []*models.List
+	for cursor.Next(context.Background()) {
+		var list models.List
+		if err := cursor.Decode(&list); err != nil {
+			return nil, err
+		}
+		lists = append(lists, &list)
+	}
+	if err := cursor.Err(); err != nil {
+		return nil, err
+	}
+	return lists, nil
+}

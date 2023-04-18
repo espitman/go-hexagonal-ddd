@@ -11,7 +11,11 @@ import (
 func (router *Router) listRouter() {
 	listRepository := mongodb.NewListRepository(router.mongoClient, "jbm-wishes")
 	listUseCase := services.NewListService(listRepository)
-	appListService := appServices.NewListService(listUseCase)
+
+	itemRepository := mongodb.NewItemRepository(router.mongoClient, "jbm-wishes")
+	itemUseCase := services.NewItemService(itemRepository)
+
+	appListService := appServices.NewListService(listUseCase, itemUseCase)
 	listHandler := handlers.NewListHandler(*appListService)
 
 	listGroup := router.r.Group("/list")

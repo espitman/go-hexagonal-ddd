@@ -26,8 +26,8 @@ func (s *ListService) GetListByID(id string) (*models.List, error) {
 	return s.listRepository.GetByID(id)
 }
 
-func (s *ListService) ListLists() ([]*models.List, error) {
-	return s.listRepository.GetAll()
+func (s *ListService) ListLists(userId int64) ([]*models.List, error) {
+	return s.listRepository.GetAllByUserId(userId)
 }
 
 func (s *ListService) UpdateList(id string, list *models.List) (*models.List, error) {

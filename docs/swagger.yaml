@@ -19,7 +19,20 @@ definitions:
         type: string
       name:
         type: string
-      updated_at:
+      userId:
+        type: integer
+    type: object
+  appModel.ListWithItems:
+    properties:
+      created_at:
+        type: string
+      id:
+        type: string
+      items:
+        items:
+          $ref: '#/definitions/appModel.Item'
+        type: array
+      name:
         type: string
       userId:
         type: integer
@@ -33,6 +46,15 @@ definitions:
     type: object
   appModel.NewList:
     properties:
+      name:
+        type: string
+    type: object
+  appModel.Team:
+    properties:
+      crest:
+        type: string
+      id:
+        type: integer
       name:
         type: string
     type: object
@@ -219,7 +241,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/appModel.List'
+            $ref: '#/definitions/appModel.ListWithItems'
         "401":
           description: Unauthorized
           schema:
@@ -275,6 +297,35 @@ paths:
       summary: update list by ID
       tags:
       - List
+  /team/{id}:
+    get:
+      description: Get a team using the provided ID
+      parameters:
+      - description: Team ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/appModel.Team'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/commonModels.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/commonModels.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Get team by ID
+      tags:
+      - Team
 securityDefinitions:
   BearerAuth:
     in: header

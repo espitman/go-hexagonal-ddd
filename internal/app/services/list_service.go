@@ -10,16 +10,18 @@ import (
 
 type ListService struct {
 	listUseCases useCases.ListUseCase
+	itemUseCase  useCases.ItemUseCase
 }
 
-func NewListService(listUseCases useCases.ListUseCase) *ListService {
+func NewListService(listUseCases useCases.ListUseCase, itemUseCase useCases.ItemUseCase) *ListService {
 	return &ListService{
 		listUseCases: listUseCases,
+		itemUseCase:  itemUseCase,
 	}
 }
 
-func (s *ListService) GetLists() ([]*appModel.List, error) {
-	lists, err := s.listUseCases.ListLists()
+func (s *ListService) GetLists(userId int64) ([]*appModel.List, error) {
+	lists, err := s.listUseCases.ListLists(userId)
 	if err != nil {
 		return nil, fmt.Errorf("failed to get lists: %w", err)
 	}
@@ -56,12 +58,11 @@ func (s *ListService) CreateList(newList *appModel.NewList, userId int64) (*appM
 		Name:      list.Name,
 		UserId:    list.UserId,
 		CreatedAt: list.CreatedAt,
-		UpdatedAt: list.UpdatedAt,
 	}
 	return appList, nil
 }
 
-func (s *ListService) GetListByID(id string) (*appModel.List, error) {
+func (s *ListService) GetListByID(id string) (*appModel.ListWithItems, error) {
 	list, err := s.listUseCases.GetListByID(id)
 	if err != nil {
 		return nil, fmt.Errorf("failed to get list by ID %s: %w", id, err)
@@ -70,11 +71,26 @@ func (s *ListService) GetListByID(id string) (*appModel.List, error) {
 	if list == nil {
 		return nil, nil
 	}
+	items, err := s.itemUseCase.GetItemsByListID(id)
+	modelItems := make([]appModel.Item, 0, len(items))
 
-	appList := &appModel.List{
-		ID:     list.ID,
-		Name:   list.Name,
-		UserId: list.UserId,
+	for _, mItem := range items {
+		modelItems = append(modelItems, appModel.Item{
+			ID:        mItem.ID,
+			ListId:    mItem.ListId,
+			ItemCode:  mItem.ItemCode,
+			CreatedAt: mItem.CreatedAt,
+		})
+	}
+
+	appList := &appModel.ListWithItems{
+		List: appModel.List{
+			ID:        list.ID,
+			Name:      list.Name,
+			UserId:    list.UserId,
+			CreatedAt: list.CreatedAt,
+		},
+		Items: modelItems,
 	}
 
 	return appList, nil

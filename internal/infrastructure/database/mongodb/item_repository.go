@@ -43,10 +43,10 @@ func (r *itemRepository) Create(item *models.Item) (*models.Item, error) {
 	}, nil
 }
 
-func (r *itemRepository) GetItemsByListID(id string) ([]*models.Item, error) {
-	docID, _ := primitive.ObjectIDFromHex(id)
+func (r *itemRepository) GetItemsByListID(listId string) ([]*models.Item, error) {
+	docListId, _ := primitive.ObjectIDFromHex(listId)
 	opts := options.Find()
-	cursor, err := r.getCollection().Find(context.Background(), bson.M{"_id": docID}, opts)
+	cursor, err := r.getCollection().Find(context.Background(), bson.M{"listId": docListId}, opts)
 	if err != nil {
 		return nil, err
 	}
