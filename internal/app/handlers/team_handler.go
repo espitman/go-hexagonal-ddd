@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	_ "git.alibaba.ir/saeedheidari-go-prototypes/jbm-wishes/internal/app/models"
 	"git.alibaba.ir/saeedheidari-go-prototypes/jbm-wishes/internal/app/services"
 	"github.com/gin-gonic/gin"
 	"net/http"
@@ -22,7 +23,7 @@ func NewTeamHandler(service appServices.TeamService) *TeamHandler {
 // @Param id path string true "Team ID"
 // @Produce json
 // @Security BearerAuth
-// @Success 200 {object} appModel.ListWithItems
+// @Success 200 {object} appModel.Team
 // @Failure 401 {object} commonModels.ErrorResponse
 // @Failure 404 {object} commonModels.ErrorResponse
 // @Router /team/{id} [get]

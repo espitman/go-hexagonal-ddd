@@ -13,12 +13,12 @@ type FootballAPIClient struct {
 }
 
 func NewFootballAPIClient() *FootballAPIClient {
-	return &FootballAPIClient{baseURL: "https://api.football-data.org/v4/"}
+	return &FootballAPIClient{baseURL: "https://varzesh3.boum.ir/"}
 }
 
 func (c *FootballAPIClient) GetByID(id int64) (*models.Team, error) {
 	idString := strconv.FormatInt(id, 10)
-	req, err := http.NewRequest("GET", c.baseURL+"teams/"+idString, nil)
+	req, err := http.NewRequest("GET", c.baseURL+"team.php?id="+idString, nil)
 	if err != nil {
 		return nil, err
 	}
