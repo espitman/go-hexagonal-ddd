@@ -10,7 +10,10 @@ import (
 
 func (router *Router) teamRouter() {
 	teamApiClient := api.NewAPIClient("http://varzesh3.boum.ir/")
-	teamRepository := repository.NewTeamRepository(teamApiClient)
+
+	redisClient, _ := router.redisConnection.NewClient()
+	teamRepository := repository.NewTeamRepository(teamApiClient, redisClient)
+
 	teamUseCase := services.NewTeamService(teamRepository)
 
 	appTeamService := appServices.NewTeamService(teamUseCase)

@@ -2,6 +2,7 @@ package router
 
 import (
 	"git.alibaba.ir/saeedheidari-go-prototypes/jbm-wishes/internal/infrastructure/database/mongodb"
+	"git.alibaba.ir/saeedheidari-go-prototypes/jbm-wishes/internal/infrastructure/redis"
 	"github.com/gin-gonic/gin"
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
@@ -9,14 +10,20 @@ import (
 )
 
 type Router struct {
-	r           *gin.Engine
-	mongoClient *mongo.Client
+	r               *gin.Engine
+	mongoClient     *mongo.Client
+	redisConnection *redis.Connection
 }
 
 func NewRouter() *Router {
 	r := gin.Default()
 	mongoClient, _ := mongodb.NewMongoClient()
-	return &Router{r: r, mongoClient: mongoClient}
+	redisConnection := redis.NewConnection("localhost:6379", "1234", 0)
+	return &Router{
+		r:               r,
+		mongoClient:     mongoClient,
+		redisConnection: redisConnection,
+	}
 }
 
 func (router *Router) InitRouter() {
