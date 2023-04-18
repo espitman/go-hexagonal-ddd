@@ -4,4 +4,5 @@ import "git.alibaba.ir/saeedheidari-go-prototypes/jbm-wishes/internal/domain/mod
 
 type TeamUseCase interface {
 	GetTeamByID(teamId int64) (*models.Team, error)
+	GetTeamsByIds(teamIds []int64) ([]*models.Team, error)
 }

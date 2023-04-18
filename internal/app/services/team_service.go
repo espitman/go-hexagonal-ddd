@@ -26,9 +26,9 @@ func (s *TeamService) GetTeamByID(id int64) (*appModel.Team, error) {
 		return nil, nil
 	}
 	appTeam := &appModel.Team{
-		Id:    team.Id,
-		Name:  team.Name,
-		Crest: team.Crest,
+		TeamId: team.Id,
+		Name:   team.Name,
+		Crest:  team.Crest,
 	}
 	return appTeam, nil
 }

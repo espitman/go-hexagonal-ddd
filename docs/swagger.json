@@ -232,7 +232,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/appModel.ListWithItems"
+                            "$ref": "#/definitions/appModel.ListWithTeams"
                         }
                     },
                     "401": {
@@ -441,7 +441,7 @@
                 }
             }
         },
-        "appModel.ListWithItems": {
+        "appModel.ListWithTeams": {
             "type": "object",
             "properties": {
                 "created_at": {
@@ -450,14 +450,14 @@
                 "id": {
                     "type": "string"
                 },
-                "items": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/appModel.Item"
-                    }
-                },
                 "name": {
                     "type": "string"
+                },
+                "teams": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/appModel.Team"
+                    }
                 },
                 "userId": {
                     "type": "integer"
@@ -490,10 +490,13 @@
                     "type": "string"
                 },
                 "id": {
-                    "type": "integer"
+                    "type": "string"
                 },
                 "name": {
                     "type": "string"
+                },
+                "teamId": {
+                    "type": "integer"
                 }
             }
         },

@@ -4,6 +4,7 @@ import (
 	"git.alibaba.ir/saeedheidari-go-prototypes/jbm-wishes/internal/app/handlers"
 	appServices "git.alibaba.ir/saeedheidari-go-prototypes/jbm-wishes/internal/app/services"
 	"git.alibaba.ir/saeedheidari-go-prototypes/jbm-wishes/internal/domain/services"
+	"git.alibaba.ir/saeedheidari-go-prototypes/jbm-wishes/internal/infrastructure/api"
 	"git.alibaba.ir/saeedheidari-go-prototypes/jbm-wishes/internal/infrastructure/database/mongodb"
 	"git.alibaba.ir/saeedheidari-go-prototypes/jbm-wishes/internal/infrastructure/router/middlewares"
 )
@@ -15,7 +16,10 @@ func (router *Router) listRouter() {
 	itemRepository := mongodb.NewItemRepository(router.mongoClient, "jbm-wishes")
 	itemUseCase := services.NewItemService(itemRepository)
 
-	appListService := appServices.NewListService(listUseCase, itemUseCase)
+	teamRepository := api.NewFootballAPIClient()
+	teamUseCase := services.NewTeamService(teamRepository)
+
+	appListService := appServices.NewListService(listUseCase, itemUseCase, teamUseCase)
 	listHandler := handlers.NewListHandler(*appListService)
 
 	listGroup := router.r.Group("/list")

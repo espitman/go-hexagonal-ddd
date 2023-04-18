@@ -22,18 +22,18 @@ definitions:
       userId:
         type: integer
     type: object
-  appModel.ListWithItems:
+  appModel.ListWithTeams:
     properties:
       created_at:
         type: string
       id:
         type: string
-      items:
-        items:
-          $ref: '#/definitions/appModel.Item'
-        type: array
       name:
         type: string
+      teams:
+        items:
+          $ref: '#/definitions/appModel.Team'
+        type: array
       userId:
         type: integer
     type: object
@@ -54,9 +54,11 @@ definitions:
       crest:
         type: string
       id:
-        type: integer
+        type: string
       name:
         type: string
+      teamId:
+        type: integer
     type: object
   commonModels.ErrorResponse:
     properties:
@@ -241,7 +243,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/appModel.ListWithItems'
+            $ref: '#/definitions/appModel.ListWithTeams'
         "401":
           description: Unauthorized
           schema:

@@ -50,7 +50,7 @@ func (app *ListHandler) Create(c *gin.Context) {
 // @Param id path string true "List ID"
 // @Produce json
 // @Security BearerAuth
-// @Success 200 {object} appModel.ListWithItems
+// @Success 200 {object} appModel.ListWithTeams
 // @Failure 401 {object} commonModels.ErrorResponse
 // @Failure 404 {object} commonModels.ErrorResponse
 // @Router /list/{id} [get]

@@ -6,17 +6,24 @@ import (
 	appModel "git.alibaba.ir/saeedheidari-go-prototypes/jbm-wishes/internal/app/models"
 	"git.alibaba.ir/saeedheidari-go-prototypes/jbm-wishes/internal/domain/models"
 	"git.alibaba.ir/saeedheidari-go-prototypes/jbm-wishes/internal/domain/useCases"
+	"sync"
 )
 
 type ListService struct {
 	listUseCases useCases.ListUseCase
 	itemUseCase  useCases.ItemUseCase
+	teamUseCase  useCases.TeamUseCase
 }
 
-func NewListService(listUseCases useCases.ListUseCase, itemUseCase useCases.ItemUseCase) *ListService {
+func NewListService(
+	listUseCases useCases.ListUseCase,
+	itemUseCase useCases.ItemUseCase,
+	teamUseCase useCases.TeamUseCase,
+) *ListService {
 	return &ListService{
 		listUseCases: listUseCases,
 		itemUseCase:  itemUseCase,
+		teamUseCase:  teamUseCase,
 	}
 }
 
@@ -62,37 +69,41 @@ func (s *ListService) CreateList(newList *appModel.NewList, userId int64) (*appM
 	return appList, nil
 }
 
-func (s *ListService) GetListByID(id string) (*appModel.ListWithItems, error) {
-	list, err := s.listUseCases.GetListByID(id)
+func (s *ListService) GetListByID(id string) (*appModel.ListWithTeams, error) {
+	var wg sync.WaitGroup
+	wg.Add(2)
+
+	var list *models.List
+	var items []*models.Item
+	var err error
+
+	go func() {
+		list, err = s.listUseCases.GetListByID(id)
+		wg.Done()
+	}()
+	go func() {
+		items, err = s.itemUseCase.GetItemsByListID(id)
+		wg.Done()
+	}()
+
+	wg.Wait()
+
 	if err != nil {
 		return nil, fmt.Errorf("failed to get list by ID %s: %w", id, err)
 	}
-
 	if list == nil {
 		return nil, nil
 	}
-	items, err := s.itemUseCase.GetItemsByListID(id)
-	modelItems := make([]appModel.Item, 0, len(items))
-
-	for _, mItem := range items {
-		modelItems = append(modelItems, appModel.Item{
-			ID:        mItem.ID,
-			ListId:    mItem.ListId,
-			ItemCode:  mItem.ItemCode,
-			CreatedAt: mItem.CreatedAt,
-		})
-	}
-
-	appList := &appModel.ListWithItems{
+	teams := s.getTeamsByItems(items)
+	appList := &appModel.ListWithTeams{
 		List: appModel.List{
 			ID:        list.ID,
 			Name:      list.Name,
 			UserId:    list.UserId,
 			CreatedAt: list.CreatedAt,
 		},
-		Items: modelItems,
+		Teams: teams,
 	}
-
 	return appList, nil
 }
 

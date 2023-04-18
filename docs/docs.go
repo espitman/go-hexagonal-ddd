@@ -239,7 +239,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/appModel.ListWithItems"
+                            "$ref": "#/definitions/appModel.ListWithTeams"
                         }
                     },
                     "401": {
@@ -448,7 +448,7 @@ const docTemplate = `{
                 }
             }
         },
-        "appModel.ListWithItems": {
+        "appModel.ListWithTeams": {
             "type": "object",
             "properties": {
                 "created_at": {
@@ -457,14 +457,14 @@ const docTemplate = `{
                 "id": {
                     "type": "string"
                 },
-                "items": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/appModel.Item"
-                    }
-                },
                 "name": {
                     "type": "string"
+                },
+                "teams": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/appModel.Team"
+                    }
                 },
                 "userId": {
                     "type": "integer"
@@ -497,10 +497,13 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "id": {
-                    "type": "integer"
+                    "type": "string"
                 },
                 "name": {
                     "type": "string"
+                },
+                "teamId": {
+                    "type": "integer"
                 }
             }
         },

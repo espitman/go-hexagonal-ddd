@@ -17,3 +17,8 @@ type ListWithItems struct {
 	List
 	Items []Item
 }
+
+type ListWithTeams struct {
+	List
+	Teams []Team
+}
