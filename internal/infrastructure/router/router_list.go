@@ -4,22 +4,13 @@ import (
 	"git.alibaba.ir/saeedheidari-go-prototypes/jbm-wishes/internal/app/handlers"
 	appServices "git.alibaba.ir/saeedheidari-go-prototypes/jbm-wishes/internal/app/services"
 	"git.alibaba.ir/saeedheidari-go-prototypes/jbm-wishes/internal/domain/services"
-	"git.alibaba.ir/saeedheidari-go-prototypes/jbm-wishes/internal/infrastructure/api"
-	"git.alibaba.ir/saeedheidari-go-prototypes/jbm-wishes/internal/infrastructure/repository"
 	"git.alibaba.ir/saeedheidari-go-prototypes/jbm-wishes/internal/infrastructure/router/middlewares"
 )
 
 func (router *Router) listRouter() {
-	listRepository := repository.NewListRepository(router.mongoClient, "jbm-wishes")
-	listUseCase := services.NewListService(listRepository)
-
-	itemRepository := repository.NewItemRepository(router.mongoClient, "jbm-wishes")
-	itemUseCase := services.NewItemService(itemRepository)
-
-	teamApiClient := api.NewAPIClient("http://varzesh3.boum.ir/")
-	redisClient, _ := router.redisConnection.NewClient()
-	teamRepository := repository.NewTeamRepository(teamApiClient, redisClient)
-	teamUseCase := services.NewTeamService(teamRepository)
+	listUseCase := services.NewListService(*router.listRepository)
+	itemUseCase := services.NewItemService(*router.itemRepository)
+	teamUseCase := services.NewTeamService(*router.teamRepository)
 
 	appListService := appServices.NewListService(listUseCase, itemUseCase, teamUseCase)
 	listHandler := handlers.NewListHandler(*appListService)
