@@ -11,13 +11,18 @@ import (
 type ItemService struct {
 	itemUseCases useCases.ItemUseCase
 	listUseCase  useCases.ListUseCase
+	teamUseCase  useCases.TeamUseCase
 }
 
 func NewItemService(
-	itemUseCases useCases.ItemUseCase, listUseCase useCases.ListUseCase) *ItemService {
+	itemUseCases useCases.ItemUseCase,
+	listUseCase useCases.ListUseCase,
+	teamUseCase useCases.TeamUseCase,
+) *ItemService {
 	return &ItemService{
 		itemUseCases: itemUseCases,
 		listUseCase:  listUseCase,
+		teamUseCase:  teamUseCase,
 	}
 }
 
@@ -29,6 +34,12 @@ func (s *ItemService) CreateItem(newItem *appModel.NewItem) (*appModel.Item, err
 	}
 
 	docListId, _ := primitive.ObjectIDFromHex(newItem.ListId)
+
+	_, err = s.teamUseCase.GetTeamByID(newItem.ItemCode)
+	if err != nil {
+		return nil, fmt.Errorf("failed to add item: %w", err)
+	}
+
 	item := &models.Item{
 		ListId:   docListId,
 		ItemCode: newItem.ItemCode,

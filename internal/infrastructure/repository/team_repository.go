@@ -5,6 +5,7 @@ package repository
 import (
 	"context"
 	"encoding/json"
+	"errors"
 	"git.alibaba.ir/saeedheidari-go-prototypes/jbm-wishes/internal/domain/models"
 	"git.alibaba.ir/saeedheidari-go-prototypes/jbm-wishes/internal/domain/repositories"
 	"git.alibaba.ir/saeedheidari-go-prototypes/jbm-wishes/internal/infrastructure/api"
@@ -40,6 +41,11 @@ func (r *teamRepository) GetByID(id int64) (*models.Team, error) {
 	}
 
 	_ = r.apiClient.Get("team.php?id="+idString, &team)
+
+	if team.Id == 0 {
+		return nil, errors.New("team not found!")
+	}
+
 	jsonTeam, _ := json.Marshal(team)
 	r.redisClient.Set(ctx, key, jsonTeam, 0)
 	return &team, nil

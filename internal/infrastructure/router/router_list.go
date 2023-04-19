@@ -17,7 +17,6 @@ func (router *Router) listRouter() {
 	itemUseCase := services.NewItemService(itemRepository)
 
 	teamApiClient := api.NewAPIClient("http://varzesh3.boum.ir/")
-
 	redisClient, _ := router.redisConnection.NewClient()
 	teamRepository := repository.NewTeamRepository(teamApiClient, redisClient)
 	teamUseCase := services.NewTeamService(teamRepository)
