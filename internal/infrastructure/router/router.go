@@ -25,13 +25,13 @@ func NewRouter() *Router {
 	r := gin.Default()
 	mongoClient, _ := mongodb.NewMongoClient()
 	redisConnection := redis.NewConnection("localhost:6379", "1234", 0)
+	redisClient, _ := redisConnection.NewClient()
 
 	listRepository := repository.NewListRepository(mongoClient, "jbm-wishes")
 
 	itemRepository := repository.NewItemRepository(mongoClient, "jbm-wishes")
 
 	teamApiClient := api.NewAPIClient("http://varzesh3.boum.ir/")
-	redisClient, _ := redisConnection.NewClient()
 	teamRepository := repository.NewTeamRepository(teamApiClient, redisClient)
 
 	return &Router{
