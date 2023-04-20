@@ -9,6 +9,7 @@ import (
 	"github.com/espitman/go-hexagonal-ddd/internal/domain/models"
 	"github.com/espitman/go-hexagonal-ddd/internal/domain/repositories"
 	"github.com/espitman/go-hexagonal-ddd/internal/infrastructure/api"
+	"github.com/go-redis/redis/v8"
 	"strconv"
 )
 

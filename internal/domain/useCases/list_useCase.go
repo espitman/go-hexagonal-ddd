@@ -1,6 +1,6 @@
 package useCases
 
-import "github.com/espitman/go-hexagonal-ddd/domain/models"
+import "github.com/espitman/go-hexagonal-ddd/internal/domain/models"
 
 type ListUseCase interface {
 	AddList(list *models.List) (*models.List, error)

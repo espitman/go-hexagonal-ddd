@@ -2,6 +2,7 @@ package handlers
 
 import (
 	_ "github.com/espitman/go-hexagonal-ddd/internal/app/models"
+	appServices "github.com/espitman/go-hexagonal-ddd/internal/app/services"
 	"github.com/gin-gonic/gin"
 	"net/http"
 	"strconv"
