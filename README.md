@@ -1,4 +1,4 @@
-# Jabama Wishes
+# go hexagonal domain driven design
 
 ###### How to generate swagger
 
