@@ -76,7 +76,7 @@ info:
     email: s.heidar@jabama.com
     name: API Support
   description: This is a sample hexagonal domain driven for golang.
-  title: Jabama Wishes
+  title: Go Hexagonal ddd
   version: "1.0"
 paths:
   /item:

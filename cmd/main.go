@@ -2,10 +2,11 @@ package main
 
 import (
 	_ "github.com/espitman/go-hexagonal-ddd/docs"
+	"github.com/espitman/go-hexagonal-ddd/internal/config"
 	"github.com/espitman/go-hexagonal-ddd/internal/infrastructure/router"
 )
 
-// @title           Jabama Wishes
+// @title           Go Hexagonal ddd
 // @version         1.0
 // @description     This is a sample hexagonal domain driven for golang.
 // @contact.name   API Support
@@ -17,6 +18,7 @@ import (
 // @name Authorization
 
 func main() {
-	r := router.NewRouter()
+	conf, _ := config.LoadConfig("./config/config.json")
+	r := router.NewRouter(conf)
 	r.InitRouter()
 }

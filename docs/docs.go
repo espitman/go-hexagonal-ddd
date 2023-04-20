@@ -539,7 +539,7 @@ var SwaggerInfo = &swag.Spec{
 	Host:             "localhost:8080",
 	BasePath:         "/",
 	Schemes:          []string{},
-	Title:            "Jabama Wishes",
+	Title:            "Go Hexagonal ddd",
 	Description:      "This is a sample hexagonal domain driven for golang.",
 	InfoInstanceName: "swagger",
 	SwaggerTemplate:  docTemplate,

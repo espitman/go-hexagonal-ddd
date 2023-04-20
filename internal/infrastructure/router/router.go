@@ -1,6 +1,7 @@
 package router
 
 import (
+	"github.com/espitman/go-hexagonal-ddd/internal/config"
 	"github.com/espitman/go-hexagonal-ddd/internal/domain/repositories"
 	"github.com/espitman/go-hexagonal-ddd/internal/infrastructure/api"
 	"github.com/espitman/go-hexagonal-ddd/internal/infrastructure/database/mongodb"
@@ -14,6 +15,7 @@ import (
 
 type Router struct {
 	r               *gin.Engine
+	conf            *config.Config
 	mongoClient     *mongo.Client
 	redisConnection *redis.Connection
 	listRepository  *repositories.ListRepository
@@ -21,21 +23,22 @@ type Router struct {
 	teamRepository  *repositories.TeamRepository
 }
 
-func NewRouter() *Router {
+func NewRouter(conf *config.Config) *Router {
 	r := gin.Default()
-	mongoClient, _ := mongodb.NewMongoClient()
-	redisConnection := redis.NewConnection("localhost:6379", "1234", 0)
+	mongoClient, _ := mongodb.NewMongoClient(conf)
+	redisConnection := redis.NewConnection(conf.RedisHost+":"+conf.RedisPort, conf.RedisPassword, conf.RedisDb)
 	redisClient, _ := redisConnection.NewClient()
 
-	listRepository := repository.NewListRepository(mongoClient, "jbm-wishes")
+	listRepository := repository.NewListRepository(mongoClient, conf.DBDatabase)
 
-	itemRepository := repository.NewItemRepository(mongoClient, "jbm-wishes")
+	itemRepository := repository.NewItemRepository(mongoClient, conf.DBDatabase)
 
-	teamApiClient := api.NewAPIClient("http://varzesh3.boum.ir/")
+	teamApiClient := api.NewAPIClient(conf.APIBaseUrl)
 	teamRepository := repository.NewTeamRepository(teamApiClient, redisClient)
 
 	return &Router{
 		r:               r,
+		conf:            conf,
 		mongoClient:     mongoClient,
 		redisConnection: redisConnection,
 		listRepository:  &listRepository,

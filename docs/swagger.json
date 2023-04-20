@@ -2,7 +2,7 @@
     "swagger": "2.0",
     "info": {
         "description": "This is a sample hexagonal domain driven for golang.",
-        "title": "Jabama Wishes",
+        "title": "Go Hexagonal ddd",
         "contact": {
             "name": "API Support",
             "email": "s.heidar@jabama.com"
