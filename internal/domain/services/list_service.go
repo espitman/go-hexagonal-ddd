@@ -2,8 +2,8 @@ package services
 
 import (
 	"errors"
-	"git.alibaba.ir/saeedheidari-go-prototypes/jbm-wishes/internal/domain/models"
-	"git.alibaba.ir/saeedheidari-go-prototypes/jbm-wishes/internal/domain/repositories"
+	"github.com/espitman/go-hexagonal-ddd/internal/domain/models"
+	"github.com/espitman/go-hexagonal-ddd/internal/domain/repositories"
 )
 
 type ListService struct {

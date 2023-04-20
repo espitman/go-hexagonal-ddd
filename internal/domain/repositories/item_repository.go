@@ -3,7 +3,7 @@ package repositories
 // implemented by mongodb item_repository
 
 import (
-	"git.alibaba.ir/saeedheidari-go-prototypes/jbm-wishes/internal/domain/models"
+	"github.com/espitman/go-hexagonal-ddd/internal/domain/models"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 

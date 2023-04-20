@@ -1,8 +1,7 @@
 package handlers
 
 import (
-	appModel "git.alibaba.ir/saeedheidari-go-prototypes/jbm-wishes/internal/app/models"
-	"git.alibaba.ir/saeedheidari-go-prototypes/jbm-wishes/internal/app/services"
+	appModel "github.com/espitman/go-hexagonal-ddd/internal/app/models"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )

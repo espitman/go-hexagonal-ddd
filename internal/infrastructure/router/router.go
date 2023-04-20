@@ -1,11 +1,11 @@
 package router
 
 import (
-	"git.alibaba.ir/saeedheidari-go-prototypes/jbm-wishes/internal/domain/repositories"
-	"git.alibaba.ir/saeedheidari-go-prototypes/jbm-wishes/internal/infrastructure/api"
-	"git.alibaba.ir/saeedheidari-go-prototypes/jbm-wishes/internal/infrastructure/database/mongodb"
-	"git.alibaba.ir/saeedheidari-go-prototypes/jbm-wishes/internal/infrastructure/redis"
-	"git.alibaba.ir/saeedheidari-go-prototypes/jbm-wishes/internal/infrastructure/repository"
+	"github.com/espitman/go-hexagonal-ddd/internal/domain/repositories"
+	"github.com/espitman/go-hexagonal-ddd/internal/infrastructure/api"
+	"github.com/espitman/go-hexagonal-ddd/internal/infrastructure/database/mongodb"
+	"github.com/espitman/go-hexagonal-ddd/internal/infrastructure/redis"
+	"github.com/espitman/go-hexagonal-ddd/internal/infrastructure/repository"
 	"github.com/gin-gonic/gin"
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"

@@ -1,8 +1,8 @@
 package appServices
 
 import (
-	appModel "git.alibaba.ir/saeedheidari-go-prototypes/jbm-wishes/internal/app/models"
-	"git.alibaba.ir/saeedheidari-go-prototypes/jbm-wishes/internal/domain/models"
+	appModel "github.com/espitman/go-hexagonal-ddd/internal/app/models"
+	"github.com/espitman/go-hexagonal-ddd/internal/domain/models"
 	"strconv"
 )
 

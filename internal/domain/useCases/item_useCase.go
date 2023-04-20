@@ -1,6 +1,6 @@
 package useCases
 
-import "git.alibaba.ir/saeedheidari-go-prototypes/jbm-wishes/internal/domain/models"
+import "github.com/espitman/go-hexagonal-ddd/internal/domain/models"
 
 type ItemUseCase interface {
 	AddItem(item *models.Item) (*models.Item, error)

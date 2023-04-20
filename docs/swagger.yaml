@@ -82,17 +82,17 @@ paths:
   /item:
     post:
       consumes:
-      - application/json
+        - application/json
       description: Add a new item to list
       parameters:
-      - description: Item object to Add
-        in: body
-        name: list
-        required: true
-        schema:
-          $ref: '#/definitions/appModel.NewItem'
+        - description: Item object to Add
+          in: body
+          name: list
+          required: true
+          schema:
+            $ref: '#/definitions/appModel.NewItem'
       produces:
-      - application/json
+        - application/json
       responses:
         "201":
           description: Created
@@ -107,21 +107,21 @@ paths:
           schema:
             $ref: '#/definitions/commonModels.ErrorResponse'
       security:
-      - BearerAuth: []
+        - BearerAuth: [ ]
       summary: Add a new item to list
       tags:
-      - Item
+        - Item
   /item/{id}:
     delete:
       description: remove Item from the list by ID
       parameters:
-      - description: Item ID
-        in: path
-        name: id
-        required: true
-        type: string
+        - description: Item ID
+          in: path
+          name: id
+          required: true
+          type: string
       produces:
-      - application/json
+        - application/json
       responses:
         "200":
           description: OK
@@ -136,15 +136,15 @@ paths:
           schema:
             $ref: '#/definitions/commonModels.ErrorResponse'
       security:
-      - BearerAuth: []
+        - BearerAuth: [ ]
       summary: remove Item from the list by ID
       tags:
-      - Item
+        - Item
   /list:
     get:
       description: Get all lists
       produces:
-      - application/json
+        - application/json
       responses:
         "200":
           description: OK
@@ -161,23 +161,23 @@ paths:
           schema:
             $ref: '#/definitions/commonModels.ErrorResponse'
       security:
-      - BearerAuth: []
+        - BearerAuth: [ ]
       summary: Get all lists
       tags:
-      - List
+        - List
     post:
       consumes:
-      - application/json
+        - application/json
       description: Create a new list with the specified name
       parameters:
-      - description: List object to create
-        in: body
-        name: list
-        required: true
-        schema:
-          $ref: '#/definitions/appModel.NewList'
+        - description: List object to create
+          in: body
+          name: list
+          required: true
+          schema:
+            $ref: '#/definitions/appModel.NewList'
       produces:
-      - application/json
+        - application/json
       responses:
         "201":
           description: Created
@@ -196,21 +196,21 @@ paths:
           schema:
             $ref: '#/definitions/commonModels.ErrorResponse'
       security:
-      - BearerAuth: []
+        - BearerAuth: [ ]
       summary: Create a new list
       tags:
-      - List
+        - List
   /list/{id}:
     delete:
       description: delete a list using the provided ID
       parameters:
-      - description: List ID
-        in: path
-        name: id
-        required: true
-        type: string
+        - description: List ID
+          in: path
+          name: id
+          required: true
+          type: string
       produces:
-      - application/json
+        - application/json
       responses:
         "200":
           description: OK
@@ -225,20 +225,20 @@ paths:
           schema:
             $ref: '#/definitions/commonModels.ErrorResponse'
       security:
-      - BearerAuth: []
+        - BearerAuth: [ ]
       summary: delete list by ID
       tags:
-      - List
+        - List
     get:
       description: Get a list using the provided ID
       parameters:
-      - description: List ID
-        in: path
-        name: id
-        required: true
-        type: string
+        - description: List ID
+          in: path
+          name: id
+          required: true
+          type: string
       produces:
-      - application/json
+        - application/json
       responses:
         "200":
           description: OK
@@ -253,26 +253,26 @@ paths:
           schema:
             $ref: '#/definitions/commonModels.ErrorResponse'
       security:
-      - BearerAuth: []
+        - BearerAuth: [ ]
       summary: Get list by ID
       tags:
-      - List
+        - List
     put:
       description: update a list using the provided ID
       parameters:
-      - description: List ID
-        in: path
-        name: id
-        required: true
-        type: string
-      - description: List object to update
-        in: body
-        name: list
-        required: true
-        schema:
-          $ref: '#/definitions/appModel.NewList'
+        - description: List ID
+          in: path
+          name: id
+          required: true
+          type: string
+        - description: List object to update
+          in: body
+          name: list
+          required: true
+          schema:
+            $ref: '#/definitions/appModel.NewList'
       produces:
-      - application/json
+        - application/json
       responses:
         "200":
           description: OK
@@ -295,21 +295,21 @@ paths:
           schema:
             $ref: '#/definitions/commonModels.ErrorResponse'
       security:
-      - BearerAuth: []
+        - BearerAuth: [ ]
       summary: update list by ID
       tags:
-      - List
+        - List
   /team/{id}:
     get:
       description: Get a team using the provided ID
       parameters:
-      - description: Team ID
-        in: path
-        name: id
-        required: true
-        type: string
+        - description: Team ID
+          in: path
+          name: id
+          required: true
+          type: string
       produces:
-      - application/json
+        - application/json
       responses:
         "200":
           description: OK
@@ -324,10 +324,10 @@ paths:
           schema:
             $ref: '#/definitions/commonModels.ErrorResponse'
       security:
-      - BearerAuth: []
+        - BearerAuth: [ ]
       summary: Get team by ID
       tags:
-      - Team
+        - Team
 securityDefinitions:
   BearerAuth:
     in: header

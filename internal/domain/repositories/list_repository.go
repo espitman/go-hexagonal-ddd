@@ -2,7 +2,7 @@ package repositories
 
 // implemented by mongodb list_repository
 
-import "git.alibaba.ir/saeedheidari-go-prototypes/jbm-wishes/internal/domain/models"
+import "github.com/espitman/go-hexagonal-ddd/internal/domain/models"
 
 type ListRepository interface {
 	Create(list *models.List) (*models.List, error)

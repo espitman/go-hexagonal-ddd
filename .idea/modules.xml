@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/jbm-wishes.iml" filepath="$PROJECT_DIR$/.idea/jbm-wishes.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/go-hexagonal-ddd.iml" filepath="$PROJECT_DIR$/.idea/go-hexagonal-ddd.iml" />
     </modules>
   </component>
 </project>

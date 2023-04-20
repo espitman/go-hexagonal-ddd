@@ -1,8 +1,8 @@
 package services
 
 import (
-	"git.alibaba.ir/saeedheidari-go-prototypes/jbm-wishes/internal/domain/models"
-	"git.alibaba.ir/saeedheidari-go-prototypes/jbm-wishes/internal/domain/repositories"
+	"github.com/espitman/go-hexagonal-ddd/internal/domain/models"
+	"github.com/espitman/go-hexagonal-ddd/internal/domain/repositories"
 	"sync"
 )
 

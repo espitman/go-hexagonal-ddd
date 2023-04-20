@@ -1,6 +1,6 @@
 package useCases
 
-import "git.alibaba.ir/saeedheidari-go-prototypes/jbm-wishes/internal/domain/models"
+import "github.com/espitman/go-hexagonal-ddd/domain/models"
 
 type ListUseCase interface {
 	AddList(list *models.List) (*models.List, error)

@@ -1,10 +1,10 @@
 package router
 
 import (
-	"git.alibaba.ir/saeedheidari-go-prototypes/jbm-wishes/internal/app/handlers"
-	appServices "git.alibaba.ir/saeedheidari-go-prototypes/jbm-wishes/internal/app/services"
-	"git.alibaba.ir/saeedheidari-go-prototypes/jbm-wishes/internal/domain/services"
-	"git.alibaba.ir/saeedheidari-go-prototypes/jbm-wishes/internal/infrastructure/router/middlewares"
+	"github.com/espitman/go-hexagonal-ddd/internal/app/handlers"
+	appServices "github.com/espitman/go-hexagonal-ddd/internal/app/services"
+	"github.com/espitman/go-hexagonal-ddd/internal/domain/services"
+	"github.com/espitman/go-hexagonal-ddd/internal/infrastructure/router/middlewares"
 )
 
 func (router *Router) listRouter() {

@@ -1,8 +1,8 @@
 package main
 
 import (
-	_ "git.alibaba.ir/saeedheidari-go-prototypes/jbm-wishes/docs"
-	"git.alibaba.ir/saeedheidari-go-prototypes/jbm-wishes/internal/infrastructure/router"
+	_ "github.com/espitman/go-hexagonal-ddd/docs"
+	"github.com/espitman/go-hexagonal-ddd/internal/infrastructure/router"
 )
 
 // @title           Jabama Wishes

@@ -2,8 +2,8 @@ package appServices
 
 import (
 	"fmt"
-	appModel "git.alibaba.ir/saeedheidari-go-prototypes/jbm-wishes/internal/app/models"
-	"git.alibaba.ir/saeedheidari-go-prototypes/jbm-wishes/internal/domain/useCases"
+	appModel "github.com/espitman/go-hexagonal-ddd/internal/app/models"
+	"github.com/espitman/go-hexagonal-ddd/internal/domain/useCases"
 )
 
 type TeamService struct {

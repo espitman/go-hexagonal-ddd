@@ -1,8 +1,7 @@
 package handlers
 
 import (
-	_ "git.alibaba.ir/saeedheidari-go-prototypes/jbm-wishes/internal/app/models"
-	"git.alibaba.ir/saeedheidari-go-prototypes/jbm-wishes/internal/app/services"
+	_ "github.com/espitman/go-hexagonal-ddd/internal/app/models"
 	"github.com/gin-gonic/gin"
 	"net/http"
 	"strconv"

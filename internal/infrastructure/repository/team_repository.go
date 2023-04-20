@@ -6,10 +6,9 @@ import (
 	"context"
 	"encoding/json"
 	"errors"
-	"git.alibaba.ir/saeedheidari-go-prototypes/jbm-wishes/internal/domain/models"
-	"git.alibaba.ir/saeedheidari-go-prototypes/jbm-wishes/internal/domain/repositories"
-	"git.alibaba.ir/saeedheidari-go-prototypes/jbm-wishes/internal/infrastructure/api"
-	"github.com/go-redis/redis/v8"
+	"github.com/espitman/go-hexagonal-ddd/internal/domain/models"
+	"github.com/espitman/go-hexagonal-ddd/internal/domain/repositories"
+	"github.com/espitman/go-hexagonal-ddd/internal/infrastructure/api"
 	"strconv"
 )
 
